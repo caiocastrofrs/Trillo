@@ -13,6 +13,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -65,6 +72,7 @@
   display: flex;
   align-items: center;
   align-self: stretch;
+  position: relative;
   & > * {
     padding: 0 2rem;
     cursor: pointer;
@@ -106,6 +114,31 @@
     margin-right: 1rem;
     border-radius: 50%;
   }
+  &__user-photo:hover ~ &__hover{
+    display: block;
+  }
+  &__hover {
+    display: none;
+    position: absolute;
+    top: 75%;
+    background-color: #fff;
+    font-size: 1.5rem;
+    list-style-type: none;
+    transition: all .3s;
+    &__item {
+      padding: 1rem 3rem;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+      transition: transform .2s;
+      font-weight: bold;
+      &:hover {
+        transform: scale(1.2);
+        border-bottom: none;
+      }
+    }
+    &:hover {
+      display: block;
+    }
+  }
 }
 
 //////////////////////////////////////////
@@ -115,11 +148,21 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
   &__item {
     position: relative;
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0;
+      }
+    }
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
 
@@ -157,6 +200,15 @@
     position: relative;
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   &__icon {
@@ -164,6 +216,13 @@
     fill: currentColor;
     width: 1.75rem;
     height: 1.75rem;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -174,6 +233,9 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 //////////////////////////////////////////
@@ -199,6 +261,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -229,6 +296,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__icon-location {
@@ -239,11 +310,19 @@
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 //////////////////////////////////////////
@@ -342,6 +421,7 @@
   }
 
   &__friends {
+    display: flex;
   }
 
   &__photo {
@@ -351,7 +431,7 @@
     border-radius: 50%;
     border: 3px solid #fff;
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -364,6 +444,12 @@
   margin-bottom: 3.5rem;
   position: relative;
   overflow: hidden;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
   &__text {
     z-index: 10;
     position: relative;
@@ -416,6 +502,11 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
+
   &__book-now {
     font-size: 2rem;
     font-weight: 300;
@@ -446,7 +537,7 @@
     display: inline-block;
     height: 100%;
     width: 100%;
-    transition: all .2s;
+    transition: all 0.2s;
   }
   &__visible {
     padding: 2rem 7.5rem;
@@ -459,21 +550,20 @@
   }
   &:hover {
     background-image: linear-gradient(
-    to left,
-    var(--color-primary-light),
-    var(--color-primary-dark)
-  );
+      to left,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
   }
-  &:hover &__visible{
+  &:hover &__visible {
     transform: translateY(100%);
   }
 
-  &:hover &__invisible{
-    top:0;
+  &:hover &__invisible {
+    top: 0;
   }
   &:focus {
     outline: none;
     animation: pulsate 1s infinite;
   }
-
 }
